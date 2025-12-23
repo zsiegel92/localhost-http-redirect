@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "Localhost HTTPS to HTTP",
+  "version": "1.0",
+  "description": "Redirects localhost HTTPS to HTTP when SSL errors occur",
+  "permissions": ["webNavigation", "declarativeNetRequest"],
+  "host_permissions": ["*://localhost/*"],
+  "background": {
+    "service_worker": "background.js"
+  }
+}
