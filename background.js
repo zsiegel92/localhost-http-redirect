@@ -1,6 +1,13 @@
-// Listen for navigation errors on localhost HTTPS
+// Listen for navigation errors on localhost:3000/api/auth/callback
 chrome.webNavigation.onErrorOccurred.addListener(
   (details) => {
+    const url = new URL(details.url);
+    
+    // Only handle localhost:3000/api/auth/callback
+    if (url.host !== "localhost:3000" || !url.pathname.startsWith("/api/auth/callback")) {
+      return;
+    }
+    
     // Check if it's an SSL-related error
     if (details.error === "net::ERR_SSL_PROTOCOL_ERROR" || 
         details.error === "net::ERR_CERT_AUTHORITY_INVALID" ||
@@ -13,5 +20,5 @@ chrome.webNavigation.onErrorOccurred.addListener(
       chrome.tabs.update(details.tabId, { url: httpUrl });
     }
   },
-  { url: [{ hostEquals: "localhost", schemes: ["https"] }] }
+  { url: [{ schemes: ["https"] }] }
 );
