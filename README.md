@@ -1,10 +1,10 @@
 # Localhost HTTPS to HTTP
 
-A simple Chrome extension that automatically redirects `https://localhost:...` to `http://localhost:...` when SSL errors occur.
+A simple Chrome extension that automatically redirects `https://localhost:3000/api/auth/callback` to `http://localhost:3000/api/auth/callback` when SSL errors occur.
 
 ## Why?
 
-Sometimes local development servers don't have valid SSL certificates, causing Chrome to show `ERR_SSL_PROTOCOL_ERROR`. This extension detects that error and redirects to HTTP automatically.
+OAuth callbacks sometimes redirect to `https://localhost:3000/api/auth/callback`, but local dev servers typically don't have valid SSL certificates. Chrome shows `ERR_SSL_PROTOCOL_ERROR` and the callback fails. This extension detects that error and redirects to HTTP automatically.
 
 ## Install
 
